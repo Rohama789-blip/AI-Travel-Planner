@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Travel Planner — Gemini Prompting Techniques</title>
+<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>✈️ AI Travel Planner</h1>
+      <p class="subtitle">Comparing Zero-Shot, Few-Shot &amp; Structured Reasoning prompting with Gemini</p>
+    </header>
+
+    <div class="layout">
+      <!-- Form -->
+      <section class="card form-card">
+        <h2>Traveler Details</h2>
+        <form id="travel-form">
+          <label>Name
+            <input type="text" id="name" placeholder="Alex" required />
+          </label>
+
+          <label>Destination
+            <input type="text" id="destination" placeholder="Dubai" required />
+          </label>
+
+          <div class="row">
+            <label>Number of Days
+              <input type="number" id="days" min="1" max="30" placeholder="4" required />
+            </label>
+            <label>Budget ($)
+              <input type="number" id="budget" min="1" placeholder="800" required />
+            </label>
+          </div>
+
+          <label>Interests <span class="hint">(select all that apply)</span></label>
+          <div class="chips" id="interests-chips">
+            <button type="button" class="chip" data-value="Adventure">Adventure</button>
+            <button type="button" class="chip" data-value="Food">Food</button>
+            <button type="button" class="chip" data-value="Nature">Nature</button>
+            <button type="button" class="chip" data-value="Shopping">Shopping</button>
+            <button type="button" class="chip" data-value="History">History</button>
+            <button type="button" class="chip" data-value="Beaches">Beaches</button>
+            <button type="button" class="chip" data-value="Art">Art</button>
+          </div>
+
+          <label>Travel Style
+            <select id="travel_style">
+              <option>Solo</option>
+              <option>Family</option>
+              <option>Friends</option>
+            </select>
+          </label>
+
+          <label>Prompting Technique</label>
+          <div class="technique-options">
+            <label class="radio-option">
+              <input type="radio" name="technique" value="zero_shot" checked />
+              Zero-Shot
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="technique" value="few_shot" />
+              Few-Shot
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="technique" value="structured_reasoning" />
+              Structured Reasoning
+            </label>
+          </div>
+
+          <div class="button-row">
+            <button type="submit" class="btn-primary">Generate Itinerary</button>
+            <button type="button" id="compare-btn" class="btn-secondary">Compare All 3</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Results -->
+      <section class="card result-card">
+        <h2>Generated Itinerary</h2>
+        <div id="loading" class="loading hidden">Talking to Gemini…</div>
+        <div id="result-single" class="result-box hidden">
+          <div class="technique-badge" id="technique-badge"></div>
+          <pre id="itinerary-text"></pre>
+        </div>
+        <div id="result-compare" class="compare-grid hidden"></div>
+        <div id="placeholder" class="placeholder">
+          Fill in the form and choose a prompting technique to see the itinerary Gemini generates.
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
